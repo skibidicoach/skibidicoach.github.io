@@ -35,18 +35,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    // Assuming you're testing on localhost or a non-HTTPS environment
-    if (window.location.protocol === 'http:' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-        setupOrientationListener();
-    } else {
-        // Add a button to request permission
-        const button = document.createElement('button');
-        button.innerText = 'Enable Motion';
-        button.id = 'requestPermission';
-        button.style.display = 'block';
-        button.addEventListener('click', requestPermission);
-        document.body.appendChild(button);
-    }
+    // Request permission immediately on page load
+    requestPermission();
 
     // Function to update the current time in the #stamp-text element
     function updateTime() {
@@ -70,7 +60,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 stampText.style.opacity = 1; // Fade in with new content
                 showTime = !showTime; // Toggle between time and word
             }, 400); // Wait for fade out to complete before changing text
-        }, 2500); // Change text every 5 seconds (adjust as needed)
+        }, 2500); // Change text every 2.5 seconds (adjust as needed)
     }
 
     // Helper function to get current time as a string
