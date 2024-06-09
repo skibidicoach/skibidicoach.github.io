@@ -242,3 +242,11 @@ label{
     width: fit-content;
     border-radius: 2px;
 }
+
+#disclaimer{
+    color: rgba(255, 255, 255, 0.333);
+    font-weight: lighter;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    text-align: center;
+}
