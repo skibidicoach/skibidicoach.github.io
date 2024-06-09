@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const gamma = event.gamma; // Rotation around Y axis (-90 to 90)
 
         // Adjust sensitivity
-        const sensitivityFactor = 0.5; // Reduce sensitivity by scaling down the gamma value
+        const sensitivityFactor = 0.4; // Reduce sensitivity by scaling down the gamma value
         const adjustedGamma = gamma * sensitivityFactor;
 
         // Apply rotation to the stamp
