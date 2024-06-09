@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // Change the color of the stamp div
         const stamp = document.getElementById('stamp');
-        stamp.style.backgroundColor = selectedColor;
+        stamp.style.backgroundImage = 'url("images/' + selectedColor + '")';
 
         // Request permission for device orientation data
         requestPermission();

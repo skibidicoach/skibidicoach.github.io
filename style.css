@@ -141,7 +141,11 @@ p {
 }
 
 #stamp {
-    background-color: #e67097;
+    /* background-colorgb(182, 182, 182)097; */
+    background-image: url("images/pink.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 100%;
     display: flex;
     align-items: center;
