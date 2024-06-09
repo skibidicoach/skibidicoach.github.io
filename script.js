@@ -35,9 +35,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    // Request permission immediately on page load
-    requestPermission();
-
     // Function to update the current time in the #stamp-text element
     function updateTime() {
         const now = new Date();
@@ -48,9 +45,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Function to fade between time and a custom word
-    function fadeText() {
+    function fadeText(displayWord) {
         const stampText = document.getElementById('stamp-text');
-        const displayWord = 'Balls'; // Replace 'YourWord' with the word you want to display
         let showTime = true;
 
         setInterval(() => {
@@ -107,6 +103,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
     updateTimeUntilMidnight();
     setInterval(updateTimeUntilMidnight, 1000);
 
-    // Start the fade effect for the stamp-text
-    fadeText();
+    // Add event listener to the enter button
+    document.getElementById('enter-button').addEventListener('click', () => {
+        const enterWordInput = document.getElementById('enter-word');
+        const displayWord = enterWordInput.value; // Get the word to display
+        document.getElementById('options-container').style.display = 'none'; // Hide options container
+
+        // Get the selected color
+        const selectedColor = document.getElementById('select-color').value;
+
+        // Change the color of the stamp div
+        const stamp = document.getElementById('stamp');
+        stamp.style.backgroundColor = selectedColor;
+
+        // Request permission for device orientation data
+        requestPermission();
+
+        // Start the fade effect for the stamp-text with the entered word
+        fadeText(displayWord);
+    });
 });

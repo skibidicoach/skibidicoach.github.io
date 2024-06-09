@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>StageRoach</title>
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -54,6 +54,24 @@
             </div>
             <p id="more-details-text">More details <i class="fa fa-angle-right" aria-hidden="true"></i></p>
         </div>
+    </div>
+    <div id="options-container">
+        <div class="option">
+            <label for="select-color">Choose colour</label>
+            <select class="options-input" id="select-color">
+                <option value="#e87494" selected>Pink</option>
+                <option value="#f0a875">Orange</option>
+                <option value="#8b90e8">Blue</option>
+                <option value="#ababab">Grey</option>
+                <option value="#9fdb93">Green</option>
+            </select>
+        </div>
+        <div class="option">
+            <label for="enter-word">Enter word</label>
+            <input class="options-input" type="text" id="enter-word">
+        </div>
+        <button id="enter-button">Enter</button>
+
     </div>
 </body>
 </html>
