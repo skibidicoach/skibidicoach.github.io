@@ -1,0 +1,9 @@
+{
+    "name": "Stageroach",
+    "short_name" : "Stageroach",
+    "start_url": "index.html",
+    "scope" : "./",
+    "theme_color": "#101C2C",
+    "background_color": "#101C2C",
+    "display": "standalone"
+ }
