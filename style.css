@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Radio+Canada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 html, body {
     /* font-family: 'Roboto', sans-serif; */
@@ -23,6 +24,8 @@ p {
     align-items: center;
     row-gap: 20px;
     position: relative;
+    height: 7vh;
+
 }
 
 #header::after {
@@ -49,6 +52,7 @@ p {
 }
 
 .nav-item {
+    /* font-family: 'Radio Canada', sans-serif; */
     font-size: 14px;
 }
 
@@ -89,6 +93,8 @@ p {
     padding: 8px 0;
     width: 100%;
     text-align: center;
+    /* font-family: 'Radio Canada', sans-serif; */
+
 }
 
 #details-container {
@@ -188,9 +194,21 @@ p {
 }
 
 #more-details-text {
-    padding: 26px 0;
     color: #50a085;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 
 #options-container{
     height: 100vh;
@@ -202,6 +220,8 @@ p {
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 0.1s forwards; /* Apply the fade-in animation */
 }
 
 label{
