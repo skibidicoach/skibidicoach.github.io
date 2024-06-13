@@ -3,94 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel= “manifest” href= “manifest.json” />
-    <title>StageRoach</title>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
-    <link rel="stylesheet" href="style.css">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">  -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">  -->
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="StageRoach">
-    <link rel="apple-touch-icon" href="images/logo.png">
+    <title>Document</title>
 </head>
 <body>
-    <div id="header">
-        <div id="header-top">
-            <i class="fa-solid fa-bars" onclick="document.getElementById('options-container').style.display='flex'"></i>
-            <p  id="tickets">Tickets</p>
-            <i class="fa fa-cart-shopping"></i>
-        </div>
-        <div id="nav">
-            <p class="nav-item">Active Tickets</p>
-            <p class="nav-item" style="margin-right: 10px;">My Tickets</p>
-            <p class="nav-item">Buy Tickets</p>
-        </div>
-    </div>
-    <div id="main-background">
-        <div id="main">
-            <div id="qr-container">
-                <img src="images/qr.jpeg" id="qr">
-            </div>
-            <p id="ticket-title">Manchester DayRider</p>
-            <div id="details-container">
-                <hr class="divider">
-                <div id="details">
-                    <p class="details-text">1 Adult</p>
-                    <p class="details-text">£6.30</p>
-                </div>
-                <hr class="divider">
-            </div>
-            <div id="valid-from-container">
-                <p id="valid-from-text">Valid from: 00:00, 16 Sep 2021</p>
-            </div>
-            <div id="stamp-container">
-                <div id="stamp">
-                    <p id="stamp-text">14:12</p>
-                </div>
-            </div>
-            <div id="expires-container">
-                <p id="expires-text">Ticket expires in</p>
-                <p id="expires-time">13h : 46m : 58s</p>
-            </div>
-            <div id="serial-container">
-                <p id="serial-text">1231-20210916131213-232</p>
-            </div>
-            <p id="more-details-text">More details <i class="fa fa-angle-right" aria-hidden="true"></i></p>
-        </div>
-    </div>
-    <div id="options-container">
-        <div class="option">
-            <label for="select-color">Choose colour</label>
-            <select class="options-input" id="select-color">
-                <option value="pink.png" selected>Pink</option>
-                <option value="orange.png">Orange</option>
-                <option value="blue.png">Blue</option>
-                <option value="grey.jpeg">Grey</option>
-                <option value="green.jpeg">Green</option>
-            </select>
-        </div>
-        <div class="option">
-            <label for="enter-word">Enter word</label>
-            <input class="options-input" type="text" id="enter-word">
-        </div>
-        <button id="enter-button">Enter</button>
-        <p class="option" id="disclaimer">DISCLAIMER: For educational purposes only. Don't actually use this for anything illegal obviously - that would be terrible.</p>
-
-    </div>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch(error => {
-                console.log('Service Worker registration failed:', error);
-            });
-        }
-    </script>
+    Uh Oh
 </body>
 </html>
