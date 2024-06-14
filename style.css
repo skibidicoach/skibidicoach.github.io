@@ -136,7 +136,7 @@ p,i{
 #side-menu-background{
     visibility: hidden;
     opacity: 0;
-    background-color: rgba(160, 160, 160, 0.481);
+    background-color: rgba(160, 160, 160, 0.6);
     position: fixed;
     width: 100%;
     height: 100%;
@@ -152,6 +152,8 @@ p,i{
     width: 80%;
     left: -100%;
     transition: left 0.3s ease-in;
+    display: flex;
+    flex-direction: column;
 }
 
 #side-menu-background.visible {
@@ -161,4 +163,101 @@ p,i{
 
 #side-menu.visible {
     left: 0;
+}
+
+#side-menu-top{
+    width: 100%;
+    height: 30%;
+    background-color: #e5e6e8;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+#profile-icon{
+    flex: 1;
+    width: 100%;
+    background-image: url('images/profile.png');
+    background-size: 14%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#profile-name{
+    font-size: 15px;
+    font-family: 'circ', sans-serif;
+    /* font-weight: lighter/; */
+}
+
+#my-account{
+    font-size: 15px;
+    font-family: 'circ', sans-serif;
+    font-weight: 500;
+    border: none;
+    background-color: #388166;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 3px;
+    margin-top: 8px;
+}
+#side-menu-bottom{
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.sc-green{
+    color: #388166;
+}
+
+#side-menu-nav{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px;
+    row-gap: 24px;
+    flex: 1;
+}
+
+.side-menu-nav-item{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.side-menu-nav-item i{
+    margin-right: 8px;
+    font-size: 20px;
+}
+.side-menu-nav-item p{
+    font-size: 16px;
+}
+
+#side-menu-footer{
+    margin-top: auto;
+    margin-bottom: 14%;
+}
+
+#ukb{
+    margin-top: auto;
+    text-align: center;
+    font-size: 15px;
+}
+
+#side-menu-controls{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 18px;
+}
+
+#help-and-faqs{
+    font-weight: bold;
+    font-size: 15px;
 }
