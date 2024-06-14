@@ -52,7 +52,7 @@ html, body {
     font-family: 'Product Sans', sans-serif;
     font-weight: 500;
     flex-direction: column;
-    background-color: rgb(16, 28, 44);
+    background-color: #0b1b2b;
 }
 
 p,i{
@@ -61,7 +61,7 @@ p,i{
 }
 
 #header,#navbar{
-    background-color: rgb(16, 28, 44);
+    background-color: #0b1b2b;
     color: white;
     /* font-weight: bold; */
     /* font-style: thin; */
@@ -131,7 +131,8 @@ p,i{
 }
 
 #navbar.active-2::after {
-    left: 70%;
+    width: 27%;
+    left: 73%;
 }
 
 #main{
@@ -148,10 +149,11 @@ p,i{
     opacity: 1;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    align-items: center;
 }
 
 #active-tickets{
-    height: 100%;
     background-color: #32414f;
     /* opacity: 1;
     display: flex;
@@ -159,17 +161,98 @@ p,i{
 }
 
 #my-tickets{
-    height: 100%;
     background-color: white;
     /* display: none;
     flex-direction: column; */
 }
 
 #buy-tickets{
-    height: 100%;
-    background-color: rgb(206, 206, 206);
-    /* display: none;
-    flex-direction: column; */
+    background-color: #e4e5e7;
+}
+
+#recently-purchased{
+    background-color: #d0d8de;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* box-sizing: border-box; */
+    padding: 16px 14px 20px 14px;
+    box-sizing: border-box;
+    row-gap: 16px;
+}
+
+#recently-purchased-text{
+    color: #0b1b2b;
+    font-weight: 600;
+}
+
+.ticket-card-small{
+    width: 100%;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 16px;
+    border-radius: 5px;
+    border-left: solid 7px #0b1b2b;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.ticket-card-title{
+    color: #0b1b2b;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.terms-and-conditions{
+    color: #388166;
+}
+
+.adult-child{
+    color: #0b1b2b;
+    font-weight: 300;
+}
+
+.ticket-card-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.mobile-ticket{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.mobile-ticket-icon{
+    height: 80%;
+    aspect-ratio: 0.8;
+    background-color: rgba(128, 128, 128, 0.201);
+}
+
+.mobile-ticket-text{
+    color: #0b1b2b;
+    font-weight: 300;
+}
+
+.ticket-card-price{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 2px;
+}
+
+.buy-ticket-button{
+    background-color: #388166;
+    border: none;
+    color: white;
+    font-family: 'Product Sans', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 3px;
+    padding: 12px 26px;
 }
 
 #side-menu-background{
@@ -227,7 +310,7 @@ p,i{
 #profile-name{
     font-size: 15px;
     font-family: 'Product Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     /* font-weight: lighter/; */
 }
 
@@ -287,7 +370,7 @@ p,i{
     margin-top: auto;
     text-align: center;
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 #side-menu-controls{
