@@ -1,6 +1,6 @@
 {
-    "name": "Stageroach",
-    "short_name" : "Stageroach",
+    "name": "Stagecoach",
+    "short_name" : "Stagecoach",
     "start_url": "index.html",
     "scope" : "./",
     "theme_color": "#101C2C",
