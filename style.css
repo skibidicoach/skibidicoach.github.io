@@ -177,9 +177,9 @@ p,i{
     flex-direction: column;
     align-items: center;
     /* box-sizing: border-box; */
-    padding: 16px 14px 20px 14px;
+    padding: 14px 14px 18px 14px;
     box-sizing: border-box;
-    row-gap: 16px;
+    row-gap: 14px;
 }
 
 #recently-purchased-text{
@@ -191,7 +191,7 @@ p,i{
     width: 100%;
     background-color: white;
     box-sizing: border-box;
-    padding: 16px;
+    padding: 12px;
     border-radius: 5px;
     border-left: solid 7px #0b1b2b;
     display: flex;
@@ -242,7 +242,7 @@ p,i{
 .ticket-card-price{
     font-weight: bold;
     font-size: 20px;
-    margin-top: 2px;
+    /* margin-top: 2px; */
 }
 
 .buy-ticket-button{
