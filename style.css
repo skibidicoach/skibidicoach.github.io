@@ -3,8 +3,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @font-face {
     font-family: 'circ';
-    src: url('font/circ.ttf') format('truetype');
+    src: url('fonts/circ.ttf') format('truetype');
     font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Product Sans';
+    src: url('fonts/ProductSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Product Sans';
+    src: url('fonts/ProductSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Product Sans';
+    src: url('fonts/ProductSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Product Sans';
+    src: url('fonts/ProductSans-Medium.ttf') format('truetype');
+    font-weight: medium;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Product Sans';
+    src: url('fonts/ProductSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Product Sans';
+    src: url('fonts/ProductSans-Black.ttf') format('truetype');
+    font-weight: 900;
     font-style: normal;
 }
 
@@ -12,7 +49,8 @@ html, body {
     height: 100%;
     margin: 0;
     display: flex;
-    font-family: 'circ', sans-serif;
+    font-family: 'Product Sans', sans-serif;
+    font-weight: 500;
     flex-direction: column;
     background-color: rgb(16, 28, 44);
 }
@@ -26,6 +64,7 @@ p,i{
     background-color: rgb(16, 28, 44);
     color: white;
     /* font-weight: bold; */
+    /* font-style: thin; */
     font-size: 16px;
     display: flex;
     flex-direction: row;
@@ -36,8 +75,8 @@ p,i{
 }
 
 #header{
-    padding-top: 18px;
-    padding-bottom: 18px;
+    padding-top: 16px;
+    padding-bottom: 20px;
 }
 
 .header-icon{
@@ -187,13 +226,14 @@ p,i{
 
 #profile-name{
     font-size: 15px;
-    font-family: 'circ', sans-serif;
+    font-family: 'Product Sans', sans-serif;
+    font-weight: 400;
     /* font-weight: lighter/; */
 }
 
 #my-account{
     font-size: 15px;
-    font-family: 'circ', sans-serif;
+    font-family: 'Product Sans', sans-serif;
     font-weight: 500;
     border: none;
     background-color: #388166;
@@ -235,7 +275,7 @@ p,i{
     font-size: 20px;
 }
 .side-menu-nav-item p{
-    font-size: 16px;
+    font-size: 18px;
 }
 
 #side-menu-footer{
@@ -247,6 +287,7 @@ p,i{
     margin-top: auto;
     text-align: center;
     font-size: 15px;
+    font-weight: 400;
 }
 
 #side-menu-controls{
@@ -258,6 +299,6 @@ p,i{
 }
 
 #help-and-faqs{
-    font-weight: bold;
+    font-weight: 900;
     font-size: 15px;
 }
