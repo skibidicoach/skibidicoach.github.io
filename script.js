@@ -56,7 +56,6 @@ function changeProfileName(){
         document.getElementById('profile-name').innerText = userInput;
         localStorage.setItem('profileName', userInput);
     }
-
 }
 
 function loadProfileName() {
