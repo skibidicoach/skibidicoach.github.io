@@ -48,3 +48,24 @@ function toggleSideMenu() {
         sideMenu.classList.add('visible');
     }
 }
+
+function changeProfileName(){
+    let userInput = prompt("Please enter your name:");
+
+    if (userInput) {
+        document.getElementById('profile-name').innerText = userInput;
+        localStorage.setItem('profileName', userInput);
+    }
+
+}
+
+function loadProfileName() {
+    let storedName = localStorage.getItem('profileName');
+    if (storedName) {
+        document.getElementById('profile-name').innerText = storedName;
+    }
+}
+
+window.onload = function() {
+    loadProfileName();
+}
