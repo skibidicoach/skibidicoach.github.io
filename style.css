@@ -166,7 +166,7 @@ p,i{
 
 #main{
     flex: 1;
-    position:absolute;
+    position:relative;
     top: 85px;
     width: 100%;
     height: min-content;
