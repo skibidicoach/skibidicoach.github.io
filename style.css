@@ -96,6 +96,7 @@ p,i{
     top: 0;
     padding-top: 16px;
     padding-bottom: 20px;
+    padding-top: -300px;
 }
 
 #navbar{
