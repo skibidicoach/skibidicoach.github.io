@@ -170,6 +170,7 @@ p,i{
     top: 85px;
     width: 100%;
     height: min-content;
+    /* background-color: red; */
 
 }
 
@@ -205,6 +206,8 @@ p,i{
 #buy-tickets{
     box-sizing: border-box;
     background-color: #e4e5e7;
+    height: min-content;
+    /* background-color: rebeccapurple; */
 }
 
 #recently-purchased{
