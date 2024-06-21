@@ -164,3 +164,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         await startFrontCamera();
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dots = document.querySelectorAll('.dot');
+    const welcome = document.getElementById('welcome');
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            // Remove active and selected classes from all dots
+            dots.forEach(d => {
+                d.classList.remove('active-dot');
+                d.classList.remove('selected-dot');
+            });
+
+            // Add active class to all previous dots
+            for (let i = 0; i < index; i++) {
+                dots[i].classList.add('active-dot');
+            }
+
+            // Add selected class to the clicked dot
+            dot.classList.add('selected-dot');
+
+            // Fade out the #welcome div after 1 second
+            setTimeout(() => {
+                welcome.classList.add('fade-out');
+            }, 1000);
+        });
+    });
+});
