@@ -77,6 +77,7 @@ h1 {
     border-radius: 18px;
     border: solid 1px greenyellow;
     object-fit:cover;
+    z-index: 999;
 }
 
 #camera-stream{
@@ -96,6 +97,7 @@ h1 {
     aspect-ratio: 0.7; /* Maintain aspect ratio */
     border-radius: 18px;
     border: solid 1px rgb(245, 245, 245);
+    z-index: 999;
     object-fit:cover;
 }
 
