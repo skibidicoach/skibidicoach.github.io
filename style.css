@@ -60,7 +60,15 @@ h1 {
     position: relative;
 }
 
-#camera-stream, canvas {
+canvas{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    border: solid 1px greenyellow;
+    object-fit: cover;
+}
+
+#camera-stream{
     width: 100%;
     height: 100%;
     border-radius: 18px;

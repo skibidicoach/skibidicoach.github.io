@@ -27,15 +27,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     const photoButton = document.getElementById('photo-button');
     const sendButton = document.getElementById('send-button');
 
-    async function startFrontCamera() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia(frontCameraConstraints);
-            video.srcObject = stream;
-            video.play();
-        } catch (error) {
-            console.error('Error accessing the front camera', error);
-        }
+    async function startCameras(){
+        const streamFront = await navigator.mediaDevices.getUserMedia(frontCameraConstraints);
+        video.srcObject = streamFront;
+        video.play();
+        const streamBack = await navigator.mediaDevices.getUserMedia(backCameraConstraints);
+        backCameraVideo.srcObject = streamBack;
+        backCameraVideo.play();
     }
+
+    // async function startFrontCamera() {
+    //     try {
+    //         const stream = await navigator.mediaDevices.getUserMedia(frontCameraConstraints);
+    //         video.srcObject = stream;
+    //         video.play();
+    //     } catch (error) {
+    //         console.error('Error accessing the front camera', error);
+    //     }
+    // }
 
     // async function startBackCamera() {
     //     try {
@@ -48,8 +57,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // }
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        await startFrontCamera();
+        // await startFrontCamera();
         // await startBackCamera();
+        await startCameras();
     } else {
         console.error('getUserMedia not supported on this browser.');
     }
