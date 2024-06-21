@@ -74,7 +74,7 @@ h1 {
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 30%; /* Adjust size as needed */
+    width: 35%; /* Adjust size as needed */
     aspect-ratio: 0.7; /* Maintain aspect ratio */
     border-radius: 18px;
     /* border: solid 1px greenyellow; */
@@ -95,7 +95,7 @@ h1 {
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 30%; /* Adjust size as needed */
+    width: 35%; /* Adjust size as needed */
     aspect-ratio: 0.7; /* Maintain aspect ratio */
     border-radius: 18px;
     /* border: solid 1px rgb(245, 245, 245); */
