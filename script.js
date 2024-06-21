@@ -158,6 +158,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         canvasBack.style.display = 'none';
         video.style.display = 'block';
         backCameraVideo.display = 'none';
+        closeButton.hidden = true;
         await startFrontCamera();
     });
 });
