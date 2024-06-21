@@ -1,70 +1,73 @@
-document.addEventListener("DOMContentLoaded", function() {
-    var activeTickets = document.getElementById('active-tickets');
-    var navbar = document.getElementById('navbar');
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, err => {
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+}
 
-    activeTickets.classList.add('visible'); // Ensure it's visible on page load
-    navbar.classList.add('active-0'); // Set initial active state for navbar
-});
+document.addEventListener('DOMContentLoaded', () => {
+    const frontCameraConstraints = {
+        video: {
+            facingMode: 'user' // Front camera
+        }
+    };
 
-function showSection(n) {
-    var sections = document.querySelectorAll('.main-section');
-    var navbar = document.getElementById('navbar');
-    
-    sections.forEach(function(section) {
-        section.classList.remove('visible');
-        section.style.display = 'none';
+    const backCameraConstraints = {
+        video: {
+            facingMode: { exact: 'environment' } // Back camera
+        }
+    };
+
+    const video = document.getElementById('camera-stream');
+    const backCameraVideo = document.getElementById('back-camera-stream');
+    const canvas = document.getElementById('canvas');
+    const photoButton = document.getElementById('photo-button');
+    const sendButton = document.getElementById('send-button');
+
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Get front camera stream
+        navigator.mediaDevices.getUserMedia(frontCameraConstraints)
+            .then((stream) => {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch((error) => {
+                console.error('Error accessing the front camera', error);
+            });
+
+        // Get back camera stream
+        navigator.mediaDevices.getUserMedia(backCameraConstraints)
+            .then((stream) => {
+                backCameraVideo.srcObject = stream;
+                backCameraVideo.play();
+            })
+            .catch((error) => {
+                console.error('Error accessing the back camera', error);
+            });
+    } else {
+        console.error('getUserMedia not supported on this browser.');
+    }
+
+    photoButton.addEventListener('click', () => {
+        const context = canvas.getContext('2d');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        video.pause(); // Pause the video stream to "freeze" the frame
+        sendButton.hidden = false; // Show the send button
     });
 
-    var activeSection;
-    switch (n) {
-        case 0:
-            activeSection = document.getElementById('active-tickets');
-            break;
-        case 1:
-            activeSection = document.getElementById('my-tickets');
-            break;
-        default:
-            activeSection = document.getElementById('buy-tickets');
-            break;
-    }
+    sendButton.addEventListener('click', () => {
+        // Here you can implement the logic to send the captured image
+        // For example, converting the canvas to a data URL:
+        const imageDataUrl = canvas.toDataURL('image/png');
+        console.log('Captured image data URL:', imageDataUrl);
+        // You can also reset the stream after sending the photo if needed:
+        video.play();
+        sendButton.hidden = true;
+    });
+});
 
-    activeSection.style.display = 'flex';
-    void activeSection.offsetWidth;
-    activeSection.classList.add('visible'); 
-    navbar.className = 'active-' + n;
-}
-
-function toggleSideMenu() {
-    var sideMenuBackground = document.getElementById('side-menu-background');
-    var sideMenu = document.getElementById('side-menu');
-
-    var isVisible = sideMenu.classList.contains('visible');
-    
-    if (isVisible) {
-        sideMenuBackground.classList.remove('visible');
-        sideMenu.classList.remove('visible');
-    } else {
-        sideMenuBackground.classList.add('visible');
-        sideMenu.classList.add('visible');
-    }
-}
-
-function changeProfileName(){
-    let userInput = prompt("Please enter your name:");
-
-    if (userInput) {
-        document.getElementById('profile-name').innerText = userInput;
-        localStorage.setItem('profileName', userInput);
-    }
-}
-
-function loadProfileName() {
-    let storedName = localStorage.getItem('profileName');
-    if (storedName) {
-        document.getElementById('profile-name').innerText = storedName;
-    }
-}
-
-window.onload = function() {
-    loadProfileName();
-}
