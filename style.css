@@ -75,7 +75,7 @@ h1 {
     width: 30%; /* Adjust size as needed */
     aspect-ratio: 0.7; /* Maintain aspect ratio */
     border-radius: 18px;
-    border: solid 1px greenyellow;
+    /* border: solid 1px greenyellow; */
     object-fit:cover;
     z-index: 999;
 }
@@ -96,7 +96,7 @@ h1 {
     width: 30%; /* Adjust size as needed */
     aspect-ratio: 0.7; /* Maintain aspect ratio */
     border-radius: 18px;
-    border: solid 1px rgb(245, 245, 245);
+    /* border: solid 1px rgb(245, 245, 245); */
     z-index: 999;
     object-fit:cover;
 }
