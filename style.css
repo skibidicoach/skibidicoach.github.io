@@ -13,13 +13,10 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    /* width: 100%; */
-    /* background-color: red; */
 }
 
 p,i,a,h1,h2,h3{
     margin: 0;
-    /* line-height: auto; */
 }
 
 button{
@@ -35,7 +32,6 @@ button{
     width: 100%;
     padding: 32px 20px;
     box-sizing: border-box;
-    /* background-color: grey; */
 }
 
 h1{
@@ -59,14 +55,9 @@ h1{
 }
 
 #camera-view{
-    /* background-color: rgb(133, 195, 174); */
-    /* height: 80vh; */
     flex: 1;
     width: 90%;
     position: relative;
-    /* margin: 20px; */
-    /* border-radius: 18px; */
-    /* box-sizing: border-box; */
 }
 
 #camera-stream, canvas {
@@ -74,6 +65,7 @@ h1{
     height: 100%;
     border-radius: 18px;
     object-fit: cover;
+    border: solid 1px rgb(245, 245, 245);
 }
 
 #back-camera-stream {
