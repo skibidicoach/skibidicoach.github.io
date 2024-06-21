@@ -100,18 +100,20 @@ h1 {
 .fade-first {
     opacity: 0;
     animation: fadeIn 2s forwards;
+    animation-delay: 1s;
+
 }
 
 .fade-second {
     opacity: 0; 
     animation: fadeIn 2s forwards; 
-    animation-delay: 0.75s;
+    animation-delay: 1.75s;
 }
 
 .fade-third {
     opacity: 0; 
     animation: fadeIn 2s forwards; 
-    animation-delay: 1.5s;
+    animation-delay: 2.5s;
 }
 
 #dots{
