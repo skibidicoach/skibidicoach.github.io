@@ -60,13 +60,24 @@ h1 {
     position: relative;
 }
 
-canvas{
+#canvas{
     width: 100%;
     object-fit: cover;
     height: 100%;
     border: solid 1px greenyellow;
     border-radius: 18px;
     object-fit: cover;
+}
+
+#canvas-back{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30%; /* Adjust size as needed */
+    border: solid 1px greenyellow;
+    object-fit: cover;
+    border-radius: 18px;
+
 }
 
 #camera-stream{

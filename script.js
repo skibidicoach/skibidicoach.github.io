@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const video = document.getElementById('camera-stream');
     const backCameraVideo = document.getElementById('back-camera-stream');
     const canvas = document.getElementById('canvas');
+    const canvasBack = document.getElementById('canvas-back');
     const photoButton = document.getElementById('photo-button');
     const sendButton = document.getElementById('send-button');
     const countdown = document.getElementById('countdown');
@@ -89,9 +90,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 clearInterval(countdownInterval);
                 countdown.hidden = true;
 
-                canvas.width = backCameraVideo.videoWidth;
-                canvas.height = backCameraVideo.videoHeight;
-                context.drawImage(backCameraVideo, 0, 0, canvas.width, canvas.height);
+                // Capture the current frame from the back camera and draw it on the canvas
+                const contextBack = canvasBack.getContext('2d');
+                canvasBack.width = backCameraVideo.videoWidth;
+                canvasBack.height = backCameraVideo.videoHeight;
+                contextBack.drawImage(backCameraVideo, 0, 0, canvasBack.width, canvasBack.height);
 
                 // Stop the back camera stream
                 backCameraStream.getTracks().forEach(track => track.stop());
@@ -105,7 +108,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     sendButton.addEventListener('click', () => {
         // Logic to handle the captured image
         const imageDataUrl = canvas.toDataURL('image/png');
+        const imageDataUrlBack = canvasBack.toDataURL('image/png');
         console.log('Captured image data URL:', imageDataUrl);
+        console.log('Captured back camera image data URL:', imageDataUrlBack);
         
         // Resume the front camera stream
         canvas.style.display = 'none';
