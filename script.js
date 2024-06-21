@@ -27,19 +27,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const photoButton = document.getElementById('photo-button');
     const sendButton = document.getElementById('send-button');
 
-    async function startCameras(){
-        const streamFront = await navigator.mediaDevices.getUserMedia(frontCameraConstraints);
-        video.srcObject = streamFront;
-        video.play();
-        const streamBack = await navigator.mediaDevices.getUserMedia(backCameraConstraints);
-        backCameraVideo.srcObject = streamBack;
-        backCameraVideo.play();
-    }
+    let frontCameraStream;
 
     async function startFrontCamera() {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia(frontCameraConstraints);
-            video.srcObject = stream;
+            frontCameraStream = await navigator.mediaDevices.getUserMedia(frontCameraConstraints);
+            video.srcObject = frontCameraStream;
             video.play();
         } catch (error) {
             console.error('Error accessing the front camera', error);
@@ -63,23 +56,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     photoButton.addEventListener('click', async () => {
+        // Capture the current frame from the front camera and draw it on the canvas
         const context = canvas.getContext('2d');
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        video.pause();
+        
+        // Stop the front camera stream
+        frontCameraStream.getTracks().forEach(track => track.stop());
+        video.srcObject = null; // Ensure video element is cleared
+
+        // Hide the front camera video element and show the canvas
+        video.style.display = 'none';
+        canvas.style.display = 'block';
+        
+        // Start the back camera stream
+        backCameraVideo.hidden = false;
         photoButton.hidden = true;
-        backCameraVideo.hidden = false
         await startBackCamera();
+        sendButton.hidden = false;
     });
 
     sendButton.addEventListener('click', () => {
-        // Here you can implement the logic to send the captured image
-        // For example, converting the canvas to a data URL:
+        // Logic to handle the captured image
         const imageDataUrl = canvas.toDataURL('image/png');
         console.log('Captured image data URL:', imageDataUrl);
-        // You can also reset the stream after sending the photo if needed:
-        video.play();
+        
+        // Resume the front camera stream
+        canvas.style.display = 'none';
+        video.style.display = 'block';
+        startFrontCamera();
         sendButton.hidden = true;
+        photoButton.hidden = false;
     });
 });

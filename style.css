@@ -65,6 +65,7 @@ canvas{
     object-fit: cover;
     height: 100%;
     border: solid 1px greenyellow;
+    border-radius: 18px;
     object-fit: cover;
 }
 
@@ -81,7 +82,7 @@ canvas{
     top: 10px;
     left: 10px;
     width: 30%; /* Adjust size as needed */
-    aspect-ratio: 1; /* Maintain aspect ratio */
+    aspect-ratio: 0.7; /* Maintain aspect ratio */
     border-radius: 18px;
     border: solid 1px rgb(245, 245, 245);
     object-fit: cover;
