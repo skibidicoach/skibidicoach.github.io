@@ -100,8 +100,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 backCameraStream.getTracks().forEach(track => track.stop());
                 backCameraVideo.srcObject = null; // Ensure video element is cleared
 
-                backCameraVideo.style.display = 'none';
-                canvasBack.style.display = 'block';
+                video.style.display = 'none';
+                canvas.style.display = 'block';
 
                 sendButton.hidden = false;
             }

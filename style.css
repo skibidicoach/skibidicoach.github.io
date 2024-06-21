@@ -68,6 +68,7 @@ h1 {
     border-radius: 18px;
     transform: scaleX(-1);
     object-fit: cover;
+    /* pointer-events: none; */
 }
 
 #canvas-back{
@@ -75,9 +76,10 @@ h1 {
     top: 10px;
     left: 10px;
     width: 30%; /* Adjust size as needed */
-    /* border: solid 1px greenyellow; */
+    border: solid 1px greenyellow;
     object-fit: cover;
     border-radius: 18px;
+    /* pointer-events: none; */
 
 }
 
@@ -97,7 +99,7 @@ h1 {
     width: 30%; /* Adjust size as needed */
     aspect-ratio: 0.7; /* Maintain aspect ratio */
     border-radius: 18px;
-    /* border: solid 1px rgb(245, 245, 245); */
+    border: solid 1px rgb(245, 245, 245);
     object-fit:cover;
 }
 
