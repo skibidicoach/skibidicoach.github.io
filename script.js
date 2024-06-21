@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const photoButton = document.getElementById('photo-button');
     const sendButton = document.getElementById('send-button');
     const countdown = document.getElementById('countdown');
+    const closeButton = document.getElementById('close-button');
 
     let frontCameraStream;
     let backCameraStream;
@@ -132,6 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 canvasBack.style.display = 'block';
 
                 sendButton.hidden = false;
+                closeButton.hidden = false;
             }
         }, 1000);
     });
@@ -149,5 +151,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         startFrontCamera();
         sendButton.hidden = true;
         photoButton.hidden = false;
+    });
+
+    closeButton.addEventListener('click', async () => {
+        canvas.style.display = 'none';
+        canvasBack.style.display = 'none';
+        video.style.display = 'block';
+        backCameraVideo.display = 'none';
+        await startFrontCamera();
     });
 });

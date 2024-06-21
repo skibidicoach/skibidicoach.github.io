@@ -132,3 +132,16 @@ h1 {
     color: white;
     font-weight: 700;
 }
+
+#close-button{
+    position: absolute;
+    line-height: 50%;
+    top: 15px;
+    right: 15px;
+    z-index: 999;
+    text-align: center;
+    font-size: 48px;
+    color: white;
+    font-weight: 300;
+    cursor: pointer;
+}
