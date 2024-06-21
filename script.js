@@ -36,42 +36,41 @@ document.addEventListener('DOMContentLoaded', async () => {
         backCameraVideo.play();
     }
 
-    // async function startFrontCamera() {
-    //     try {
-    //         const stream = await navigator.mediaDevices.getUserMedia(frontCameraConstraints);
-    //         video.srcObject = stream;
-    //         video.play();
-    //     } catch (error) {
-    //         console.error('Error accessing the front camera', error);
-    //     }
-    // }
+    async function startFrontCamera() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia(frontCameraConstraints);
+            video.srcObject = stream;
+            video.play();
+        } catch (error) {
+            console.error('Error accessing the front camera', error);
+        }
+    }
 
-    // async function startBackCamera() {
-    //     try {
-    //         const stream = await navigator.mediaDevices.getUserMedia(backCameraConstraints);
-    //         backCameraVideo.srcObject = stream;
-    //         backCameraVideo.play();
-    //     } catch (error) {
-    //         console.error('Error accessing the back camera', error);
-    //     }
-    // }
+    async function startBackCamera() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia(backCameraConstraints);
+            backCameraVideo.srcObject = stream;
+            backCameraVideo.play();
+        } catch (error) {
+            console.error('Error accessing the back camera', error);
+        }
+    }
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // await startFrontCamera();
-        // await startBackCamera();
-        await startCameras();
+        await startFrontCamera();
     } else {
         console.error('getUserMedia not supported on this browser.');
     }
 
-    photoButton.addEventListener('click', () => {
+    photoButton.addEventListener('click', async () => {
         const context = canvas.getContext('2d');
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        video.pause(); // Pause the video stream to "freeze" the frame
+        video.pause();
         photoButton.hidden = true;
-        sendButton.hidden = false; // Show the send button
+        backCameraVideo.hidden = false
+        await startBackCamera();
     });
 
     sendButton.addEventListener('click', () => {
