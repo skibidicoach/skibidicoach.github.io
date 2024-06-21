@@ -8,6 +8,25 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+async function checkCameraPermission() {
+    try {
+        const result = await navigator.permissions.query({ name: 'camera' });
+        if (result.state === 'granted') {
+            console.log('Camera permission granted');
+            return true;
+        } else if (result.state === 'prompt') {
+            console.log('Camera permission prompt');
+            return false;
+        } else if (result.state === 'denied') {
+            console.log('Camera permission denied');
+            return false;
+        }
+    } catch (error) {
+        console.error('Error checking camera permission', error);
+        return false;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     const frontCameraConstraints = {
         video: {
@@ -53,7 +72,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        await startFrontCamera();
+        const permissionGranted = await checkCameraPermission();
+        if (permissionGranted) {
+            await startFrontCamera();
+        } else {
+            try {
+                await startFrontCamera();
+            } catch (error) {
+                console.error('Camera access is needed for this feature.');
+            }
+        }
     } else {
         console.error('getUserMedia not supported on this browser.');
     }
