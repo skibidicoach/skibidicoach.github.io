@@ -37,19 +37,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    async function startBackCamera() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia(backCameraConstraints);
-            backCameraVideo.srcObject = stream;
-            backCameraVideo.play();
-        } catch (error) {
-            console.error('Error accessing the back camera', error);
-        }
-    }
+    // async function startBackCamera() {
+    //     try {
+    //         const stream = await navigator.mediaDevices.getUserMedia(backCameraConstraints);
+    //         backCameraVideo.srcObject = stream;
+    //         backCameraVideo.play();
+    //     } catch (error) {
+    //         console.error('Error accessing the back camera', error);
+    //     }
+    // }
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         await startFrontCamera();
-        await startBackCamera();
+        // await startBackCamera();
     } else {
         console.error('getUserMedia not supported on this browser.');
     }
