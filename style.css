@@ -85,7 +85,7 @@ canvas{
     aspect-ratio: 0.7; /* Maintain aspect ratio */
     border-radius: 18px;
     border: solid 1px rgb(245, 245, 245);
-    object-fit: cover;
+    object-fit:cover;
 }
 
 #controls {
@@ -109,4 +109,10 @@ canvas{
     color: white;
     font-weight: 900;
     font-size: 32px;
+}
+
+#countdown{
+    font-size: 56px;
+    color: white;
+    font-weight: 700;
 }

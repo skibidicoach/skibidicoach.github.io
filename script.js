@@ -26,8 +26,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const canvas = document.getElementById('canvas');
     const photoButton = document.getElementById('photo-button');
     const sendButton = document.getElementById('send-button');
+    const countdown = document.getElementById('countdown');
 
     let frontCameraStream;
+    let backCameraStream;
 
     async function startFrontCamera() {
         try {
@@ -41,8 +43,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function startBackCamera() {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia(backCameraConstraints);
-            backCameraVideo.srcObject = stream;
+            backCameraStream = await navigator.mediaDevices.getUserMedia(backCameraConstraints);
+            backCameraVideo.srcObject = backCameraStream;
             backCameraVideo.play();
         } catch (error) {
             console.error('Error accessing the back camera', error);
@@ -74,7 +76,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         backCameraVideo.hidden = false;
         photoButton.hidden = true;
         await startBackCamera();
-        sendButton.hidden = false;
+
+        // Start the 3-second countdown
+        let countdownValue = 3;
+        countdown.hidden = false;
+        countdown.textContent = countdownValue;
+
+        const countdownInterval = setInterval(() => {
+            countdownValue -= 1;
+            countdown.textContent = countdownValue;
+            if (countdownValue <= 0) {
+                clearInterval(countdownInterval);
+                countdown.hidden = true;
+
+                // Stop the back camera stream
+                backCameraStream.getTracks().forEach(track => track.stop());
+                backCameraVideo.srcObject = null; // Ensure video element is cleared
+
+                sendButton.hidden = false;
+            }
+        }, 1000);
     });
 
     sendButton.addEventListener('click', () => {
