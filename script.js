@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         canvas.style.display = 'block';
         
         // Start the back camera stream
-        backCameraVideo.hidden = false;
+        backCameraVideo.style.display = 'block';
         photoButton.hidden = true;
         await startBackCamera();
 

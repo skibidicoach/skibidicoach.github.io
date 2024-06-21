@@ -64,11 +64,8 @@ h1 {
     width: 100%;
     object-fit: cover;
     height: 100%;
-    /* border: solid 1px greenyellow; */
     border-radius: 18px;
     transform: scaleX(-1);
-    object-fit: cover;
-    /* pointer-events: none; */
 }
 
 #canvas-back{
@@ -76,11 +73,10 @@ h1 {
     top: 10px;
     left: 10px;
     width: 30%; /* Adjust size as needed */
-    border: solid 1px greenyellow;
-    object-fit: cover;
+    aspect-ratio: 0.7; /* Maintain aspect ratio */
     border-radius: 18px;
-    /* pointer-events: none; */
-
+    border: solid 1px greenyellow;
+    object-fit:cover;
 }
 
 #camera-stream{
