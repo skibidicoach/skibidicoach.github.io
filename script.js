@@ -89,6 +89,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 clearInterval(countdownInterval);
                 countdown.hidden = true;
 
+                canvas.width = backCameraVideo.videoWidth;
+                canvas.height = backCameraVideo.videoHeight;
+                context.drawImage(backCameraVideo, 0, 0, canvas.width, canvas.height);
+
                 // Stop the back camera stream
                 backCameraStream.getTracks().forEach(track => track.stop());
                 backCameraVideo.srcObject = null; // Ensure video element is cleared
