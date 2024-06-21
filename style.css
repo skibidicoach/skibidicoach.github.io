@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-html, body{
+html, body {
     font-family: 'roboto', sans-serif;
     background-color: rgb(20, 20, 20);
     padding: 0;
@@ -8,22 +8,22 @@ html, body{
     margin: 0;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
 
-p,i,a,h1,h2,h3{
+p, i, a, h1, h2, h3 {
     margin: 0;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
-#header{
+#header {
     color: white;
     display: flex;
     flex-direction: row;
@@ -34,15 +34,15 @@ button{
     box-sizing: border-box;
 }
 
-h1{
+h1 {
     font-size: 24px;
 }
 
-.friends-button{
+.friends-button {
     font-size: 18px;
 }
 
-.profile-pic{
+.profile-pic {
     background-color: rgb(63, 128, 63);
     height: 65%;
     aspect-ratio: 1;
@@ -54,7 +54,7 @@ h1{
     display: flex;
 }
 
-#camera-view{
+#camera-view {
     flex: 1;
     width: 90%;
     position: relative;
@@ -72,21 +72,21 @@ h1{
     position: absolute;
     top: 10px;
     left: 10px;
-    height: 30%;
-    aspect-ratio: 0.7;
+    width: 30%; /* Adjust size as needed */
+    aspect-ratio: 1; /* Maintain aspect ratio */
     border-radius: 18px;
     border: solid 1px rgb(245, 245, 245);
     object-fit: cover;
 }
 
-#controls{
+#controls {
     height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#photo-button{
+#photo-button {
     height: 80px;
     width: 80px;
     border-radius: 999px;
@@ -94,7 +94,7 @@ h1{
     border: 6px solid white;
 }
 
-#send-button{
+#send-button {
     background-color: rgba(0, 0, 0, 0);
     border: none;
     color: white;

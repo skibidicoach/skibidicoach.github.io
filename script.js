@@ -8,7 +8,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const frontCameraConstraints = {
         video: {
             facingMode: 'user' // Front camera
@@ -27,26 +27,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const photoButton = document.getElementById('photo-button');
     const sendButton = document.getElementById('send-button');
 
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // Get front camera stream
-        navigator.mediaDevices.getUserMedia(frontCameraConstraints)
-            .then((stream) => {
-                video.srcObject = stream;
-                video.play();
-            })
-            .catch((error) => {
-                console.error('Error accessing the front camera', error);
-            });
+    async function startFrontCamera() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia(frontCameraConstraints);
+            video.srcObject = stream;
+            video.play();
+        } catch (error) {
+            console.error('Error accessing the front camera', error);
+        }
+    }
 
-        // Get back camera stream
-        navigator.mediaDevices.getUserMedia(backCameraConstraints)
-            .then((stream) => {
-                backCameraVideo.srcObject = stream;
-                backCameraVideo.play();
-            })
-            .catch((error) => {
-                console.error('Error accessing the back camera', error);
-            });
+    async function startBackCamera() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia(backCameraConstraints);
+            backCameraVideo.srcObject = stream;
+            backCameraVideo.play();
+        } catch (error) {
+            console.error('Error accessing the back camera', error);
+        }
+    }
+
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        await startFrontCamera();
+        await startBackCamera();
     } else {
         console.error('getUserMedia not supported on this browser.');
     }
@@ -57,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.height = video.videoHeight;
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
         video.pause(); // Pause the video stream to "freeze" the frame
+        photoButton.hidden = true;
         sendButton.hidden = false; // Show the send button
     });
 
@@ -70,4 +74,3 @@ document.addEventListener('DOMContentLoaded', () => {
         sendButton.hidden = true;
     });
 });
-
