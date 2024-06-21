@@ -66,6 +66,7 @@ h1 {
     height: 100%;
     /* border: solid 1px greenyellow; */
     border-radius: 18px;
+    transform: scaleX(-1);
     object-fit: cover;
 }
 
