@@ -1,194 +1,238 @@
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(registration => {
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, err => {
-            console.log('ServiceWorker registration failed: ', err);
-        });
-    });
-}
 
-async function checkCameraPermission() {
-    try {
-        const result = await navigator.permissions.query({ name: 'camera' });
-        if (result.state === 'granted') {
-            console.log('Camera permission granted');
-            return true;
-        } else if (result.state === 'prompt') {
-            console.log('Camera permission prompt');
-            return false;
-        } else if (result.state === 'denied') {
-            console.log('Camera permission denied');
-            return false;
-        }
-    } catch (error) {
-        console.error('Error checking camera permission', error);
-        return false;
-    }
-}
+document.addEventListener("DOMContentLoaded", function() {
+    // var activeTickets = document.getElementById('active-tickets');
+    // var navbar = document.getElementById('navbar');
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const frontCameraConstraints = {
-        video: {
-            facingMode: 'user' // Front camera
-        }
-    };
-
-    const backCameraConstraints = {
-        video: {
-            facingMode: { exact: 'environment' } // Back camera
-        }
-    };
-
-    const video = document.getElementById('camera-stream');
-    const backCameraVideo = document.getElementById('back-camera-stream');
-    const canvas = document.getElementById('canvas');
-    const canvasBack = document.getElementById('canvas-back');
-    const photoButton = document.getElementById('photo-button');
-    const sendButton = document.getElementById('send-button');
-    const countdown = document.getElementById('countdown');
-    const closeButton = document.getElementById('close-button');
-
-    let frontCameraStream;
-    let backCameraStream;
-
-    async function startFrontCamera() {
-        try {
-            frontCameraStream = await navigator.mediaDevices.getUserMedia(frontCameraConstraints);
-            video.srcObject = frontCameraStream;
-            video.play();
-        } catch (error) {
-            console.error('Error accessing the front camera', error);
-        }
-    }
-
-    async function startBackCamera() {
-        try {
-            backCameraStream = await navigator.mediaDevices.getUserMedia(backCameraConstraints);
-            backCameraVideo.srcObject = backCameraStream;
-            backCameraVideo.play();
-        } catch (error) {
-            console.error('Error accessing the back camera', error);
-        }
-    }
-
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        const permissionGranted = await checkCameraPermission();
-        if (permissionGranted) {
-            await startFrontCamera();
-        } else {
-            try {
-                await startFrontCamera();
-            } catch (error) {
-                console.error('Camera access is needed for this feature.');
-            }
-        }
-    } else {
-        console.error('getUserMedia not supported on this browser.');
-    }
-
-    photoButton.addEventListener('click', async () => {
-        // Capture the current frame from the front camera and draw it on the canvas
-        const context = canvas.getContext('2d');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        
-        // Stop the front camera stream
-        frontCameraStream.getTracks().forEach(track => track.stop());
-        video.srcObject = null; // Ensure video element is cleared
-
-        // Hide the front camera video element and show the canvas
-        video.style.display = 'none';
-        canvas.style.display = 'block';
-        
-        // Start the back camera stream
-        backCameraVideo.style.display = 'block';
-        photoButton.hidden = true;
-        await startBackCamera();
-
-        // Start the 3-second countdown
-        let countdownValue = 3;
-        countdown.hidden = false;
-        countdown.textContent = countdownValue;
-
-        const countdownInterval = setInterval(() => {
-            countdownValue -= 1;
-            countdown.textContent = countdownValue;
-            if (countdownValue <= 0) {
-                clearInterval(countdownInterval);
-                countdown.hidden = true;
-
-                // Capture the current frame from the back camera and draw it on the canvas
-                const contextBack = canvasBack.getContext('2d');
-                canvasBack.width = backCameraVideo.videoWidth;
-                canvasBack.height = backCameraVideo.videoHeight;
-                contextBack.drawImage(backCameraVideo, 0, 0, canvasBack.width, canvasBack.height);
-
-                // Stop the back camera stream
-                backCameraStream.getTracks().forEach(track => track.stop());
-                backCameraVideo.srcObject = null; // Ensure video element is cleared
-
-                backCameraVideo.style.display = 'none';
-                canvasBack.style.display = 'block';
-
-                sendButton.hidden = false;
-                closeButton.hidden = false;
-            }
-        }, 1000);
-    });
-
-    sendButton.addEventListener('click', () => {
-        // Logic to handle the captured image
-        const imageDataUrl = canvas.toDataURL('image/png');
-        const imageDataUrlBack = canvasBack.toDataURL('image/png');
-        console.log('Captured image data URL:', imageDataUrl);
-        console.log('Captured back camera image data URL:', imageDataUrlBack);
-        
-        // Resume the front camera stream
-        canvas.style.display = 'none';
-        video.style.display = 'block';
-        startFrontCamera();
-        sendButton.hidden = true;
-        photoButton.hidden = false;
-    });
-
-    closeButton.addEventListener('click', async () => {
-        canvas.style.display = 'none';
-        canvasBack.style.display = 'none';
-        video.style.display = 'block';
-        backCameraVideo.display = 'none';
-        closeButton.hidden = true;
-        sendButton.hidden = true;
-        photoButton.hidden = false
-        await startFrontCamera();
-    });
+    // activeTickets.classList.add('visible'); // Ensure it's visible on page load
+    // navbar.classList.add('active-0'); // Set initial active state for navbar
+    showSection(0);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const dots = document.querySelectorAll('.dot');
-    const welcome = document.getElementById('welcome');
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            // Remove active and selected classes from all dots
-            dots.forEach(d => {
-                d.classList.remove('active-dot');
-                d.classList.remove('selected-dot');
-            });
-
-            // Add active class to all previous dots
-            for (let i = 0; i < index; i++) {
-                dots[i].classList.add('active-dot');
-            }
-
-            // Add selected class to the clicked dot
-            dot.classList.add('selected-dot');
-
-            // Fade out the #welcome div after 1 second
-            setTimeout(() => {
-                welcome.classList.add('fade-out');
-            }, 1000);
-        });
+function showSection(n) {
+    var sections = document.querySelectorAll('.main-section');
+    var navbar = document.getElementById('navbar');
+    
+    sections.forEach(function(section) {
+        // section.classList.remove('visible');
+        section.style.display = 'none';
+        section.style.zIndex = 1;
     });
+
+    var activeSection;
+    switch (n) {
+        case 0:
+            activeSection = document.getElementById('active-tickets');
+            break;
+        case 1:
+            activeSection = document.getElementById('my-tickets');
+            break;
+        default:
+            activeSection = document.getElementById('buy-tickets');
+            break;
+    }
+    activeSection.style.display = 'none';
+    activeSection.style.zIndex = 2;
+    activeSection.style.display = 'flex';
+    // activeSection.style.display = 'flex';
+    // void activeSection.offsetWidth;
+    // activeSection.classList.add('visible'); 
+    navbar.className = 'active-' + n;
+}
+
+function toggleSideMenu() {
+    var sideMenuBackground = document.getElementById('side-menu-background');
+    var sideMenu = document.getElementById('side-menu');
+
+    var isVisible = sideMenu.classList.contains('visible');
+    
+    if (isVisible) {
+        sideMenuBackground.classList.remove('visible');
+        sideMenu.classList.remove('visible');
+    } else {
+        sideMenuBackground.classList.add('visible');
+        sideMenu.classList.add('visible');
+    }
+}
+
+function toggleBadgeOptions(){
+    var menu = document.getElementById('overlay-menu');
+    var isVisible = menu.classList.contains('visible');
+
+    if (isVisible) {
+        menu.classList.remove('visible');
+    } else {
+        menu.classList.add('visible');
+        document.getElementById('input-word').value = localStorage.getItem('word');
+        document.getElementById('select-color').value = localStorage.getItem('colour')
+    }
+}
+
+function submitBadgeOptions(){
+    displayWord = document.getElementById('input-word').value;
+    color = document.getElementById('select-color').value;
+    localStorage.setItem('word', displayWord);
+    localStorage.setItem('colour', color);
+    updateBadgeColor();
+    toggleBadgeOptions();
+}
+
+function updateBadgeColor(){
+    // var badge = document.getElementById('badge');
+
+    var badgeVideo = document.getElementById('badge-video');
+    var source = badgeVideo.getElementsByTagName('source')[0];
+
+    switch (localStorage.getItem('colour')) {
+        case 'green':
+            // badge.style.backgroundImage = 'url("images/green.jpeg")';
+            source.setAttribute('src', 'videos/pink.mp4');
+            break;
+        case 'blue':
+            // badge.style.backgroundImage = 'url("images/blue.png")';
+            source.setAttribute('src', 'videos/pink.mp4');
+            break;
+        case 'pink':
+            // badge.style.backgroundImage = 'url("images/pink.png")';
+            // badge.style.backgroundImage = 'none';
+            // badge.style.background = 'url(videos/pink.mp4)'
+            source.setAttribute('src', 'videos/pink.mp4');
+            break;
+        case 'orange':
+            // badge.style.backgroundImage = 'url("images/orange.png")';
+            source.setAttribute('src', 'videos/pink.mp4');
+            break;
+        case 'grey':
+            // badge.style.backgroundImage = 'url("images/grey.jpeg")';
+            source.setAttribute('src', 'videos/oops.mp4');
+            break;
+        default:
+            break;
+    }
+
+    badgeVideo.load();
+}
+
+function changeProfileName(){
+    let userInput = prompt("Please enter your name:");
+
+    if (userInput) {
+        document.getElementById('profile-name').innerText = userInput;
+        localStorage.setItem('profileName', userInput);
+    }
+}
+
+function loadProfileName() {
+    let storedName = localStorage.getItem('profileName');
+    if (storedName) {
+        document.getElementById('profile-name').innerText = storedName;
+    }
+}
+
+window.onload = function() {
+    loadProfileName();
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    function handleOrientation(event) {
+        const gamma = event.gamma; // Rotation around Y axis (-90 to 90)
+
+        // Adjust sensitivity
+        const sensitivityFactor = -0.4; // Reduce sensitivity by scaling down the gamma value
+        const adjustedGamma = gamma * sensitivityFactor;
+
+        // Apply rotation to the badge
+        const badge = document.getElementById('badge');
+        badge.style.transform = `rotate(${adjustedGamma}deg)`;
+    }
+
+    function setupOrientationListener() {
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', handleOrientation);
+        } else {
+            alert("Device orientation not supported on this device/browser.");
+        }
+    }
+
+    function requestPermission() {
+        if (typeof DeviceMotionEvent.requestPermission === 'function') {
+            DeviceMotionEvent.requestPermission()
+                .then(permissionState => {
+                    if (permissionState === 'granted') {
+                        setupOrientationListener();
+                    } else {
+                        alert('Permission to access device orientation denied.');
+                    }
+                })
+                .catch(console.error);
+        } else {
+            setupOrientationListener(); // If not iOS, just set up the listener
+        }
+    }
+
+    function updateTime() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const currentTime = `${hours}:${minutes}`;
+        document.getElementById('badge-text').textContent = currentTime;
+    }
+
+    // Function to fade between time and a custom word
+    function fadeText() {
+        const badgeText = document.getElementById('badge-text');
+        let showTime = true;
+
+        setInterval(() => {
+            badgeText.style.opacity = 0; // Start fade out
+            setTimeout(() => {
+                badgeText.textContent = showTime ? localStorage.getItem('word') : getCurrentTime();
+                badgeText.style.opacity = 1; // Fade in with new content
+                showTime = !showTime; // Toggle between time and word
+            }, 400); // Wait for fade out to complete before changing text
+        }, 2500); // Change text every 2.5 seconds (adjust as needed)
+    }
+
+    function getCurrentTime() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        return `${hours}:${minutes}`;
+    }
+
+    var minRemaining = 20;
+    var secRemaining = 0;
+    function updateExpiryTime(){
+        secRemaining -= 1;
+        if (secRemaining < 0){
+            secRemaining = 59;
+            minRemaining -= 1;
+        }
+        if (minRemaining < 0){
+            minRemaining = 19;
+        }
+        const remainingTime = `0h : ${minRemaining}m : ${secRemaining}s`;
+        document.getElementById('expires-in-time').textContent = remainingTime;
+    }
+
+    updateExpiryTime()
+    setInterval(updateExpiryTime, 1000);
+
+    function updateValidFrom() {
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = now.toLocaleString('default', { month: 'short' });
+        const year = now.getFullYear();
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+        const currentDate = `${day} ${month} ${year}`;
+        document.getElementById('valid-from').innerHTML = `Valid from: ${hour}:${minute}, ${currentDate}`;
+    }
+
+    updateValidFrom();
+
+    updateTime();
+    requestPermission();
+    updateBadgeColor();
+    fadeText();
+
 });

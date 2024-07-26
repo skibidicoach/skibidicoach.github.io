@@ -1,15 +1,15 @@
 {
-    "name": "Zynstagram",
-    "short_name" : "Zynstagram",
+    "name": "Stagecoach",
+    "short_name" : "Stagecoach",
     "start_url": "index.html",
     "scope" : "./",
-    "theme_color": "#000000",
-    "background_color": "#000000",
+    "theme_color": "#101C2C",
+    "background_color": "#101C2C",
     "display": "standalone",
     "icons": [
         {
-            "src": "images/icon-128x128.png",
-            "sizes": "128x128",
+            "src": "images/logo.png",
+            "sizes": "192x192",
             "type": "image/png"
         }
     ]
